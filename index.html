@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Account Summary</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f6f8; }
+    h1 { color: #1e88e5; }
+    table { border-collapse: collapse; width: 100%; background: white; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background-color: #e3f2fd; }
+    #chartContainer { margin-top: 40px; background: white; padding: 20px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🏦 Bank Account Summary</h1>
+  <p>This page shows your recent transactions and spending summary using API data.</p>
+
+  <table id="transactionsTable">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Type</th>
+        <th>Amount (₹)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div id="chartContainer">
+    <canvas id="spendingChart"></canvas>
+  </div>
+
+  <script>
+    async function loadTransactions() {
+      const response = await fetch('transactions.json');
+      const data = await response.json();
+
+      const tbody = document.querySelector('#transactionsTable tbody');
+      let balance = 0;
+      const categoryTotals = {};
+
+      data.forEach(tx => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${tx.date}</td>
+          <td>${tx.description}</td>
+          <td>${tx.category}</td>
+          <td>${tx.type}</td>
+          <td>${tx.amount}</td>
+        `;
+        tbody.appendChild(row);
+
+        balance += tx.amount;
+        if (tx.amount < 0) {
+          categoryTotals[tx.category] = (categoryTotals[tx.category] || 0) + Math.abs(tx.amount);
+        }
+      });
+
+      // Create spending chart
+      const ctx = document.getElementById('spendingChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: Object.keys(categoryTotals),
+          datasets: [{
+            label: 'Spending by Category',
+            data: Object.values(categoryTotals),
+            backgroundColor: ['#42a5f5','#66bb6a','#ef5350','#ffa726','#ab47bc','#26c6da','#8d6e63']
+          }]
+        }
+      });
+    }
+
+    loadTransactions();
+  </script>
+</body>
+</html>
