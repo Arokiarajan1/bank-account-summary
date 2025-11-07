@@ -7,4 +7,5 @@
   {"id":6,"date":"2025-11-05","description":"Online Shopping","amount":-7200,"type":"debit","category":"Shopping"},
   {"id":7,"date":"2025-11-06","description":"Interest","amount":300,"type":"credit","category":"Other"},
   {"id":8,"date":"2025-11-07","description":"Insurance Premium","amount":-12500,"type":"debit","category":"Insurance"}
+  {"id":9,"date":"2025-11-08","description":"Milk","amount":-1000,"type":"debit","category":"commercials"}
 ]
