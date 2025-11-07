@@ -1,0 +1,10 @@
+[
+  {"id":1,"date":"2025-10-28","description":"Salary","amount":250000,"type":"credit","category":"Income"},
+  {"id":2,"date":"2025-10-30","description":"Rent Payment","amount":-45000,"type":"debit","category":"Housing"},
+  {"id":3,"date":"2025-11-02","description":"Electricity Bill","amount":-5200,"type":"debit","category":"Utilities"},
+  {"id":4,"date":"2025-11-03","description":"Grocery Store","amount":-4300,"type":"debit","category":"Groceries"},
+  {"id":5,"date":"2025-11-04","description":"Coffee Shop","amount":-250,"type":"debit","category":"Food"},
+  {"id":6,"date":"2025-11-05","description":"Online Shopping","amount":-7200,"type":"debit","category":"Shopping"},
+  {"id":7,"date":"2025-11-06","description":"Interest","amount":300,"type":"credit","category":"Other"},
+  {"id":8,"date":"2025-11-07","description":"Insurance Premium","amount":-12500,"type":"debit","category":"Insurance"}
+]
